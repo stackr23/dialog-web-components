@@ -45,7 +45,7 @@ jobs:
       - run:
           <<: *defaults_run
       - run: |
-          if [ "${CIRCLE_PR_USERNAME}" = "dialogs" ]
+          if [ "${CIRCLE_PROJECT_USERNAME}" = "dialogs" ]
           then
             npm version prerelease --preid=${CIRCLE_BRANCH}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
