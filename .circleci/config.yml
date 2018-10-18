@@ -3,14 +3,16 @@ defaults_run: &defaults_run
   name: run defaults
   command: |
     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-    git config user.name ${GIT_NAME}
-    git config user.email ${GIT_EMAIL}
+    git config user.name "$GIT_NAME"
+    git config user.email "$GIT_EMAIL"
 jobs:
   build:
     docker:
       - image: node:10
     steps:
       - checkout
+      - run:
+          <<: *defaults_run
       - run: |
           npm i
           npm run build
