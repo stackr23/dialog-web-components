@@ -2,9 +2,12 @@ version: 2
 defaults_run: &defaults_run
   name: run defaults
   command: |
-    echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-    git config user.name "$GIT_NAME"
-    git config user.email "$GIT_EMAIL"
+    if [ "${CIRCLE_PROJECT_USERNAME}" = "dialogs" ]
+    then
+      echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
+      git config user.name "$GIT_NAME"
+      git config user.email "$GIT_EMAIL"
+    fi
 jobs:
   build:
     docker:
