@@ -48,7 +48,7 @@ jobs:
       - run: |
           if [ -z "$CIRCLE_PR_USERNAME" ]
           then
-            npm version prerelease --preid=${CIRCLE_BRANCH//[/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
+            npm version prerelease --preid=${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
           fi
 
