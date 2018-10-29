@@ -30,7 +30,7 @@ class ProfileModal extends PureComponent<Props, State> {
   nameInput: ?HTMLInputElement;
 
   static contextTypes = {
-    l10n: LocalizationContextType
+    l10n: LocalizationContextType,
   };
 
   constructor(props: Props): void {
@@ -46,15 +46,17 @@ class ProfileModal extends PureComponent<Props, State> {
             nick: profile.nick,
             about: profile.about,
             avatar: profile.bigAvatar,
-            customProfile: profile.customProfile ? safelyParseJSON(profile.customProfile) : null
+            customProfile: profile.customProfile
+              ? safelyParseJSON(profile.customProfile)
+              : null,
           }
         : {
             name: '',
             nick: null,
             about: null,
             avatar: null,
-            customProfile: null
-          }
+            customProfile: null,
+          },
     };
   }
 
@@ -68,14 +70,16 @@ class ProfileModal extends PureComponent<Props, State> {
             nick: profile.nick,
             about: profile.about,
             avatar: profile.bigAvatar,
-            customProfile: profile.customProfile ? safelyParseJSON(profile.customProfile) : null
-          }
+            customProfile: profile.customProfile
+              ? safelyParseJSON(profile.customProfile)
+              : null,
+          },
         },
         () => {
           if (this.nameInput) {
             this.nameInput.focus();
           }
-        }
+        },
       );
     }
   }
@@ -85,8 +89,8 @@ class ProfileModal extends PureComponent<Props, State> {
       return {
         profile: {
           ...profile,
-          [target.name]: value
-        }
+          [target.name]: value,
+        },
       };
     });
   };
@@ -101,7 +105,7 @@ class ProfileModal extends PureComponent<Props, State> {
       nick: this.state.profile.nick,
       about: this.state.profile.about,
       avatar: this.state.profile.avatar,
-      customProfile: JSON.stringify(this.state.profile.customProfile)
+      customProfile: JSON.stringify(this.state.profile.customProfile),
     });
   };
 
@@ -111,8 +115,8 @@ class ProfileModal extends PureComponent<Props, State> {
         screen: 'avatar',
         profile: {
           ...profile,
-          avatar
-        }
+          avatar,
+        },
       };
     });
   };
@@ -123,8 +127,8 @@ class ProfileModal extends PureComponent<Props, State> {
         screen: 'profile',
         profile: {
           ...profile,
-          avatar
-        }
+          avatar,
+        },
       };
     });
   };
@@ -137,8 +141,8 @@ class ProfileModal extends PureComponent<Props, State> {
           screen: 'profile',
           profile: {
             ...prevState.profile,
-            avatar: profile.avatar
-          }
+            avatar: profile.avatar,
+          },
         };
       });
     }
@@ -150,8 +154,8 @@ class ProfileModal extends PureComponent<Props, State> {
         screen: 'profile',
         profile: {
           ...profile,
-          avatar: null
-        }
+          avatar: null,
+        },
       };
     });
   };
@@ -161,8 +165,8 @@ class ProfileModal extends PureComponent<Props, State> {
       return {
         profile: {
           ...profile,
-          customProfile: JSON.parse(JSON.stringify(customProfile))
-        }
+          customProfile: JSON.parse(JSON.stringify(customProfile)),
+        },
       };
     });
   };
@@ -180,7 +184,7 @@ class ProfileModal extends PureComponent<Props, State> {
 
   isPending(): boolean {
     const {
-      context: { name, nick, about, avatar }
+      context: { name, nick, about, avatar },
     } = this.props;
 
     return name.pending || nick.pending || about.pending || avatar.pending;
@@ -206,7 +210,8 @@ class ProfileModal extends PureComponent<Props, State> {
 
     return (
       this.state.profile.name !== this.props.profile.name ||
-      (this.state.profile.nick !== this.props.profile.nick && this.state.profile.nick !== '') ||
+      (this.state.profile.nick !== this.props.profile.nick &&
+        this.state.profile.nick !== '') ||
       this.state.profile.about !== this.props.profile.about ||
       this.state.profile.avatar !== this.props.profile.bigAvatar ||
       this.isCustomProfileChanged()
@@ -217,7 +222,7 @@ class ProfileModal extends PureComponent<Props, State> {
     if (this.props.context[field].error) {
       return {
         status: 'error',
-        hint: this.props.context[field].error
+        hint: this.props.context[field].error,
       };
     }
 
@@ -271,9 +276,11 @@ class ProfileModal extends PureComponent<Props, State> {
     }
 
     const {
-      profile: { name, avatar }
+      profile: { name, avatar },
     } = this.state;
-    const handlers = this.state.profile.avatar ? { onRemove: this.handleAvatarRemove } : {};
+    const handlers = this.state.profile.avatar
+      ? { onRemove: this.handleAvatarRemove }
+      : {};
 
     return (
       <div className={styles.avatarBlock}>
@@ -297,7 +304,7 @@ class ProfileModal extends PureComponent<Props, State> {
     }
 
     const {
-      l10n: { formatText }
+      l10n: { formatText },
     } = this.context;
 
     return (
@@ -371,13 +378,21 @@ class ProfileModal extends PureComponent<Props, State> {
       <Field className={styles.field}>
         {phones.length ? (
           <div className={styles.contactContent}>
-            <Text className={styles.contactTitle} id="ProfileModal.phone" tagName="div" />
+            <Text
+              className={styles.contactTitle}
+              id="ProfileModal.phone"
+              tagName="div"
+            />
             {phones}
           </div>
         ) : null}
         {emails.length ? (
           <div className={styles.contactContent}>
-            <Text className={styles.contactTitle} id="ProfileModal.email" tagName="div" />
+            <Text
+              className={styles.contactTitle}
+              id="ProfileModal.email"
+              tagName="div"
+            />
             {emails}
           </div>
         ) : null}
@@ -388,7 +403,7 @@ class ProfileModal extends PureComponent<Props, State> {
   renderCustomForm() {
     const { schema, profile } = this.props;
     const {
-      profile: { customProfile }
+      profile: { customProfile },
     } = this.state;
 
     if (!profile || !schema) {
@@ -440,7 +455,7 @@ class ProfileModal extends PureComponent<Props, State> {
 
   renderAvatarEdit() {
     const {
-      profile: { avatar }
+      profile: { avatar },
     } = this.state;
 
     if (avatar && typeof avatar !== 'string') {

@@ -21,7 +21,7 @@ export type Props = {
   peer: PeerInfo,
   size: AvatarSize,
   status?: ?UserStatusType,
-  onClick?: ?(event: SyntheticMouseEvent<>) => mixed
+  onClick?: ?(event: SyntheticMouseEvent<>) => mixed,
 };
 
 const seq = createSequence();
@@ -30,7 +30,7 @@ class PeerAvatarWithStatus extends PureComponent<Props, void> {
   id: string;
 
   static defaultProps = {
-    size: 'medium'
+    size: 'medium',
   };
 
   constructor(props: Props) {
@@ -65,11 +65,13 @@ class PeerAvatarWithStatus extends PureComponent<Props, void> {
     const avatar = this.getAvatarImage();
     if (avatar) {
       return (
-        <pattern id={this.id} width="100%" height="100%" patternUnits="objectBoundingBox">
-          <image
-            x="0" y="0" width="100%" height="100%"
-            xlinkHref={avatar}
-          />
+        <pattern
+          id={this.id}
+          width="100%"
+          height="100%"
+          patternUnits="objectBoundingBox"
+        >
+          <image x="0" y="0" width="100%" height="100%" xlinkHref={avatar} />
         </pattern>
       );
     }
@@ -134,24 +136,33 @@ class PeerAvatarWithStatus extends PureComponent<Props, void> {
       return null;
     }
 
-    return <circle cx="84" cy="84" r="15" className={styles[this.props.status]} />;
+    return (
+      <circle cx="84" cy="84" r="15" className={styles[this.props.status]} />
+    );
   }
 
   render() {
     const className = classNames(
       styles.container,
       this.props.className,
-      this.props.onClick ? styles.clickable : null
+      this.props.onClick ? styles.clickable : null,
     );
 
     const size = this.getAvatarSize();
 
     return (
-      <div style={{ width: size, height: size }} className={className} onClick={this.props.onClick}>
-        <svg viewBox="0 0 100 100" width={size} height={size} shapeRendering="auto">
-          <defs>
-            {this.renderDefs()}
-          </defs>
+      <div
+        style={{ width: size, height: size }}
+        className={className}
+        onClick={this.props.onClick}
+      >
+        <svg
+          viewBox="0 0 100 100"
+          width={size}
+          height={size}
+          shapeRendering="auto"
+        >
+          <defs>{this.renderDefs()}</defs>
           {this.renderMask()}
           {this.renderText()}
           {this.renderStatus()}

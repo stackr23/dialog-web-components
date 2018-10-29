@@ -12,7 +12,7 @@ import PeerAvatar from '../PeerAvatar/PeerAvatar';
 import styles from './MessageState.css';
 
 type Props = {
-  readBy?: PeerInfo[]
+  readBy?: PeerInfo[],
 };
 
 class MessageRead extends Component<Props> {
@@ -42,7 +42,7 @@ class MessageRead extends Component<Props> {
 
     const isInline = readBy.length > 4;
     const className = classNames(styles.read, {
-      [styles.inline]: isInline
+      [styles.inline]: isInline,
     });
 
     if (isInline) {

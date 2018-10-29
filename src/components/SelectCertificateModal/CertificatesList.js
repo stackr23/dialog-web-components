@@ -12,7 +12,7 @@ import styles from './SelectCertificateModal.css';
 type Props = {
   certificates: Certificate[],
   selected: Certificate,
-  onChange: (selected: Certificate) => void
+  onChange: (selected: Certificate) => void,
 };
 
 class CertificatesList extends PureComponent<Props> {
@@ -34,29 +34,19 @@ class CertificatesList extends PureComponent<Props> {
         value={selected.id}
         onChange={this.handleChange}
       >
-        {
-          certificates.map((cert, idx) => {
-            return (
-              <div key={cert.fingerprint}>
-                <Radio
-                  id={cert.id}
-                  value={cert.id}
-                  htmlAutoFocus={idx === 0}
-                >
-                  <div className={styles.label}>
-                    <span>
-                      {cert.name}
-                    </span>
-                    <span className={styles.issuer}>
-                      {`(${cert.issuer})`}
-                    </span>
-                  </div>
-                </Radio>
-                <br />
-              </div>
-            );
-          })
-        }
+        {certificates.map((cert, idx) => {
+          return (
+            <div key={cert.fingerprint}>
+              <Radio id={cert.id} value={cert.id} htmlAutoFocus={idx === 0}>
+                <div className={styles.label}>
+                  <span>{cert.name}</span>
+                  <span className={styles.issuer}>{`(${cert.issuer})`}</span>
+                </div>
+              </Radio>
+              <br />
+            </div>
+          );
+        })}
       </RadioGroup>
     );
   }

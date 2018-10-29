@@ -8,15 +8,15 @@ import AvatarColors from '../AvatarColors';
 
 export type Color = {
   type: 'color',
-  payload: string
+  payload: string,
 };
 
 export type Gradient = {
   type: 'gradient',
   payload: {
     from: string,
-    to: string
-  }
+    to: string,
+  },
 };
 
 function getAvatarColor(placeholder: AvatarPlaceholder): Gradient {
@@ -24,8 +24,8 @@ function getAvatarColor(placeholder: AvatarPlaceholder): Gradient {
     type: 'gradient',
     payload: {
       from: AvatarColors[placeholder].from,
-      to: AvatarColors[placeholder].to
-    }
+      to: AvatarColors[placeholder].to,
+    },
   };
 }
 

@@ -8,8 +8,11 @@ import React, { type Context } from 'react';
 export type RadioGroupContextType = {
   value: string,
   name: ?string,
-  onChange: (value: string, event: SyntheticInputEvent<HTMLInputElement>) => mixed,
-  disabled: boolean
+  onChange: (
+    value: string,
+    event: SyntheticInputEvent<HTMLInputElement>,
+  ) => mixed,
+  disabled: boolean,
 };
 
 export const RadioGroupContext: Context<?RadioGroupContextType> = React.createContext();

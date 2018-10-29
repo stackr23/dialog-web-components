@@ -13,7 +13,10 @@ export type RadioGroupProps = {
   children: Node,
   name?: string,
   value: string,
-  onChange: (value: string, event: SyntheticInputEvent<HTMLInputElement>) => mixed
+  onChange: (
+    value: string,
+    event: SyntheticInputEvent<HTMLInputElement>,
+  ) => mixed,
 };
 
 export type Context = {
@@ -21,13 +24,16 @@ export type Context = {
     name: string,
     value: string,
     disabled?: boolean,
-    onChange: (value: string, event: SyntheticInputEvent<HTMLInputElement>) => mixed
-  }
+    onChange: (
+      value: string,
+      event: SyntheticInputEvent<HTMLInputElement>,
+    ) => mixed,
+  },
 };
 
 class RadioGroup extends PureComponent<RadioGroupProps> {
   static defaultProps = {
-    disabled: false
+    disabled: false,
   };
 
   render() {

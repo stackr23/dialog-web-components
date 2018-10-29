@@ -20,7 +20,7 @@ export type Props = {
   peerBig: PeerInfo,
   peerSmall: PeerInfo,
   size: AvatarSize,
-  onClick?: (event: SyntheticMouseEvent<>) => mixed
+  onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 const seq = createSequence();
@@ -30,11 +30,11 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
   ids: {
     big: string,
     clip: string,
-    small: string
+    small: string,
   };
 
   static defaultProps = {
-    size: 'medium'
+    size: 'medium',
   };
 
   constructor(props: Props) {
@@ -44,7 +44,7 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
     this.ids = {
       big: `${this.id}_big`,
       clip: `${this.id}_big_clip`,
-      small: `${this.id}_small`
+      small: `${this.id}_small`,
     };
   }
 
@@ -55,7 +55,12 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
   renderDefsBig() {
     if (this.props.peerBig.avatar) {
       return (
-        <pattern id={this.ids.big} width="100%" height="100%" patternUnits="userSpaceOnUse">
+        <pattern
+          id={this.ids.big}
+          width="100%"
+          height="100%"
+          patternUnits="userSpaceOnUse"
+        >
           <image
             x="0"
             y="0"
@@ -138,9 +143,7 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
   }
 
   renderSmallAvatar() {
-    return (
-      <circle cx="84" cy="84" r="25" fill={`url(#${this.ids.small})`} />
-    );
+    return <circle cx="84" cy="84" r="25" fill={`url(#${this.ids.small})`} />;
   }
 
   renderBigAvatar() {
@@ -163,7 +166,7 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
     // const twoChars = Boolean(text && text.length !== 1);
     const textStyles = {
       fontSize: 20,
-      fontWeight: 300
+      fontWeight: 300,
     };
 
     return (
@@ -191,7 +194,7 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
     // const twoChars = Boolean(text && text.length !== 1);
     const textStyles = {
       fontSize: 38,
-      fontWeight: 300
+      fontWeight: 300,
     };
 
     return (
@@ -211,14 +214,27 @@ class DoublePeerAvatar extends PureComponent<Props, void> {
   }
 
   render() {
-    const className = classNames(styles.container, {
-      [styles.clickable]: this.props.onClick
-    }, this.props.className);
+    const className = classNames(
+      styles.container,
+      {
+        [styles.clickable]: this.props.onClick,
+      },
+      this.props.className,
+    );
     const size = this.getAvatarSize();
 
     return (
-      <div style={{ width: size, height: size }} className={className} onClick={this.props.onClick}>
-        <svg viewBox="0 0 109 109" width={size} height={size} shapeRendering="auto">
+      <div
+        style={{ width: size, height: size }}
+        className={className}
+        onClick={this.props.onClick}
+      >
+        <svg
+          viewBox="0 0 109 109"
+          width={size}
+          height={size}
+          shapeRendering="auto"
+        >
           <defs>
             {this.renderDefsBig()}
             {this.renderClipMaskBig()}
