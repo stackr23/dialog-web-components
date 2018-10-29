@@ -33,7 +33,7 @@ export type Props = {
   onChange: (query: string) => mixed,
   onSearch: (query: string) => mixed,
   onAdd: (id: number) => mixed,
-  onOpenChat: (id: number) => mixed
+  onOpenChat: (id: number) => mixed,
 };
 
 class AddContactModal extends PureComponent<Props> {
@@ -110,7 +110,13 @@ class AddContactModal extends PureComponent<Props> {
                 image={contact.avatar}
                 placeholder={contact.placeholder}
               />
-              <Icon glyph="done" className={styles.iconSmall} inverted size={14} theme="success" />
+              <Icon
+                glyph="done"
+                className={styles.iconSmall}
+                inverted
+                size={14}
+                theme="success"
+              />
             </div>
             <Text
               id="AddContactModal.user_in_contact"
@@ -161,7 +167,13 @@ class AddContactModal extends PureComponent<Props> {
               image={contact.avatar}
               placeholder={contact.placeholder}
             />
-            <Icon glyph="clear" className={styles.iconError} inverted theme="danger" size={32} />
+            <Icon
+              glyph="clear"
+              className={styles.iconError}
+              inverted
+              theme="danger"
+              size={32}
+            />
           </div>
           <ErrorMessage className={styles.error}>{error.message}</ErrorMessage>
         </div>
@@ -177,7 +189,13 @@ class AddContactModal extends PureComponent<Props> {
             image={contact.avatar}
             placeholder={contact.placeholder}
           />
-          <Icon glyph="done" className={styles.icon} inverted theme="success" size={32} />
+          <Icon
+            glyph="done"
+            className={styles.icon}
+            inverted
+            theme="success"
+            size={32}
+          />
         </div>
         <Text
           id="AddContactModal.user_added"
@@ -194,7 +212,9 @@ class AddContactModal extends PureComponent<Props> {
     const { query, added } = this.props;
 
     if (added) {
-      return <ModalBody className={styles.body}>{this.renderContact()}</ModalBody>;
+      return (
+        <ModalBody className={styles.body}>{this.renderContact()}</ModalBody>
+      );
     }
 
     return (
@@ -257,7 +277,10 @@ class AddContactModal extends PureComponent<Props> {
         <Modal className={className} onClose={this.props.onClose}>
           <ModalHeader withBorder>
             <Text id="AddContactModal.title" />
-            <ModalClose onClick={this.props.onClose} id="add_contact_close_button" />
+            <ModalClose
+              onClick={this.props.onClose}
+              id="add_contact_close_button"
+            />
           </ModalHeader>
           {this.renderBody()}
           {this.renderFooter()}

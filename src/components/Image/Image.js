@@ -22,12 +22,12 @@ export type Props = {
   height: number,
   maxWidth: number,
   maxHeight: number,
-  onClick?: (event: SyntheticMouseEvent<>) => mixed
+  onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 export type State = {
   state: 1 | 2 | 3,
-  error: ?mixed
+  error: ?mixed,
 };
 
 class Image extends PureComponent<Props, State> {
@@ -36,7 +36,7 @@ class Image extends PureComponent<Props, State> {
 
   static defaultProps = {
     maxWidth: 400,
-    maxHeight: 400
+    maxHeight: 400,
   };
 
   constructor(props: Props) {
@@ -44,7 +44,7 @@ class Image extends PureComponent<Props, State> {
 
     this.state = {
       state: STATE_LOADING,
-      error: null
+      error: null,
     };
   }
 
@@ -115,7 +115,11 @@ class Image extends PureComponent<Props, State> {
     const className = classNames(styles.container, this.props.className);
 
     return (
-      <div className={className} title={this.props.alt} style={{ width, height }}>
+      <div
+        className={className}
+        title={this.props.alt}
+        style={{ width, height }}
+      >
         {source ? (
           <img
             id={this.props.id}

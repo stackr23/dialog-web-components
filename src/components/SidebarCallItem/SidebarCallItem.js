@@ -21,7 +21,7 @@ export type Props = {
   className?: string,
   call: CallInfo,
   uid: number,
-  onSelect: (call: CallInfo) => mixed
+  onSelect: (call: CallInfo) => mixed,
 };
 
 type Context = ProviderContext;
@@ -30,7 +30,7 @@ class SidebarCallItem extends PureComponent<Props> {
   context: Context;
 
   static contextTypes = {
-    l10n: LocalizationContextType
+    l10n: LocalizationContextType,
   };
 
   handleClick = (): void => {
@@ -38,7 +38,10 @@ class SidebarCallItem extends PureComponent<Props> {
   };
 
   getCallState = (): CallState => {
-    const { uid, call: { initiator, isAnswered } } = this.props;
+    const {
+      uid,
+      call: { initiator, isAnswered },
+    } = this.props;
 
     let state = '';
 
@@ -82,18 +85,26 @@ class SidebarCallItem extends PureComponent<Props> {
   }
 
   renderTime() {
-    const { call: { date } } = this.props;
+    const {
+      call: { date },
+    } = this.props;
     const locale = getDateFnsLocale(this.context.l10n.locale);
 
     return (
       <time className={styles.time}>
-        {distanceInWordsToNow(date, { addSuffix: true, includeSeconds: true, locale })}
+        {distanceInWordsToNow(date, {
+          addSuffix: true,
+          includeSeconds: true,
+          locale,
+        })}
       </time>
     );
   }
 
   renderDuration() {
-    const { call: { duration, isAnswered } } = this.props;
+    const {
+      call: { duration, isAnswered },
+    } = this.props;
 
     if (!isAnswered) {
       return null;
@@ -119,7 +130,11 @@ class SidebarCallItem extends PureComponent<Props> {
     const className = classNames(styles.container, this.props.className);
 
     return (
-      <div className={className} onClick={this.handleClick} id={`sidebar_call_item_${this.props.call.id}`}>
+      <div
+        className={className}
+        onClick={this.handleClick}
+        id={`sidebar_call_item_${this.props.call.id}`}
+      >
         {this.renderAvatar()}
         {this.renderText()}
       </div>

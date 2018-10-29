@@ -18,7 +18,7 @@ import { hasTheirVideos } from './utils/hasVideo';
 import styles from './Call.css';
 
 type State = {
-  hover: boolean
+  hover: boolean,
 };
 
 class CallWindow extends PureComponent<Props, State> {
@@ -26,7 +26,7 @@ class CallWindow extends PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      hover: true
+      hover: true,
     };
   }
 
@@ -79,11 +79,8 @@ class CallWindow extends PureComponent<Props, State> {
       return null;
     }
 
-    return (
-      <CallVideo theirVideos={call.theirVideos} />
-    );
+    return <CallVideo theirVideos={call.theirVideos} />;
   }
-
 
   renderContent() {
     const { call } = this.props;

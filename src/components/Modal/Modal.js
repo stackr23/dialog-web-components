@@ -16,7 +16,7 @@ export type Props = {
   children?: Node,
   fullscreen?: boolean,
   shouldCloseOnOverlayClick?: boolean,
-  onClose?: () => mixed
+  onClose?: () => mixed,
 };
 
 type ReactModalProps = {
@@ -24,12 +24,12 @@ type ReactModalProps = {
   overlayClassName?: string,
   onRequestClose?: () => mixed,
   shouldCloseOnOverlayClick: boolean,
-  children: Node
+  children: Node,
 };
 
 class ReactModal extends React.PureComponent<ReactModalProps> {
   static defaultProps = {
-    shouldCloseOnOverlayClick: true
+    shouldCloseOnOverlayClick: true,
   };
 
   handleClickOverlay = () => {
@@ -58,7 +58,7 @@ class ReactModal extends React.PureComponent<ReactModalProps> {
                 {children}
               </div>
             </div>,
-            modalRoot
+            modalRoot,
           );
         }}
       </ModalContext.Consumer>
@@ -69,9 +69,13 @@ class ReactModal extends React.PureComponent<ReactModalProps> {
 export class Modal extends PureComponent<Props> {
   render() {
     const className = classNames(styles.container, this.props.className);
-    const overlayClassName = classNames(styles.overlay, this.props.overlayClassName, {
-      [styles.fullscreen]: this.props.fullscreen
-    });
+    const overlayClassName = classNames(
+      styles.overlay,
+      this.props.overlayClassName,
+      {
+        [styles.fullscreen]: this.props.fullscreen,
+      },
+    );
     const { onClose, shouldCloseOnOverlayClick } = this.props;
 
     return (

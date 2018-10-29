@@ -20,11 +20,11 @@ type Props = {
   certificates: Certificate[],
   onClose: () => void,
   onConfirm: (selected: Certificate) => void,
-  className?: string
+  className?: string,
 };
 
 type State = {
-  selected: Certificate
+  selected: Certificate,
 };
 
 class SelectCertificateModal extends PureComponent<Props, State> {
@@ -32,7 +32,7 @@ class SelectCertificateModal extends PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      selected: this.props.certificates[0]
+      selected: this.props.certificates[0],
     };
   }
 

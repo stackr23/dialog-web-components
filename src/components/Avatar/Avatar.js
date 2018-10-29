@@ -18,7 +18,7 @@ export type Props = {
   placeholder: AvatarPlaceholder,
   image?: ?string,
   className?: string,
-  onClick?: (event: SyntheticMouseEvent<>) => mixed
+  onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 const seq = createSequence();
@@ -32,7 +32,7 @@ class Avatar extends PureComponent<Props> {
 
   static defaultProps = {
     size: 32,
-    placeholder: 'empty'
+    placeholder: 'empty',
   };
 
   constructor(props: Props) {
@@ -46,7 +46,12 @@ class Avatar extends PureComponent<Props> {
 
     if (image) {
       return (
-        <pattern id={this.id} width="100%" height="100%" patternUnits="objectBoundingBox">
+        <pattern
+          id={this.id}
+          width="100%"
+          height="100%"
+          patternUnits="objectBoundingBox"
+        >
           <image
             x="0"
             y="0"
@@ -104,7 +109,7 @@ class Avatar extends PureComponent<Props> {
     const className = classNames(
       styles.container,
       this.props.className,
-      this.props.onClick ? styles.clickable : null
+      this.props.onClick ? styles.clickable : null,
     );
 
     return (
@@ -114,12 +119,18 @@ class Avatar extends PureComponent<Props> {
         onClick={this.props.onClick}
         title={this.props.title}
       >
-        <svg viewBox="0 0 100 100" width={size} height={size} shapeRendering="auto">
-          <defs>
-            {this.renderDefs()}
-          </defs>
+        <svg
+          viewBox="0 0 100 100"
+          width={size}
+          height={size}
+          shapeRendering="auto"
+        >
+          <defs>{this.renderDefs()}</defs>
           <rect
-            fill={`url(#${this.id})`} x="0" y="0" width="100"
+            fill={`url(#${this.id})`}
+            x="0"
+            y="0"
+            width="100"
             height="100"
           />
           {this.renderText()}
