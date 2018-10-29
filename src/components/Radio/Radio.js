@@ -7,7 +7,10 @@ import React, { PureComponent, type Node } from 'react';
 import classNames from 'classnames';
 
 import styles from './Radio.css';
-import { RadioGroupContext, type RadioGroupContextType } from './RadioGroupContext';
+import {
+  RadioGroupContext,
+  type RadioGroupContextType,
+} from './RadioGroupContext';
 
 export type RadioProps = {
   className?: string,
@@ -16,18 +19,18 @@ export type RadioProps = {
   value: string,
   tabIndex?: number,
   htmlAutoFocus?: boolean,
-  disabled?: boolean
+  disabled?: boolean,
 };
 
 class Radio extends PureComponent<RadioProps> {
   handleChange = (radioGroup: RadioGroupContextType) => (
-    event: SyntheticInputEvent<HTMLInputElement>
+    event: SyntheticInputEvent<HTMLInputElement>,
   ): void => {
     radioGroup.onChange(event.target.value, event);
   };
 
   inputRef: {
-    current: HTMLInputElement | null
+    current: HTMLInputElement | null,
   } = React.createRef();
 
   focus(): void {
@@ -57,7 +60,7 @@ class Radio extends PureComponent<RadioProps> {
           const disabled = this.props.disabled || radioGroup.disabled;
           const className = classNames(styles.container, this.props.className, {
             [styles.labeled]: Boolean(children),
-            [styles.disabled]: disabled
+            [styles.disabled]: disabled,
           });
 
           return (

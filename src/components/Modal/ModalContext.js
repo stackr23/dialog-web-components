@@ -6,21 +6,24 @@
 import React, { type Node } from 'react';
 
 export const ModalContext = React.createContext({
-  modalRoot: null
+  modalRoot: null,
 });
 
 type ModalProviderProps = {
   modalRootId?: string,
-  children: Node
+  children: Node,
 };
 
 type ModalProviderState = {
-  modalRoot: null | HTMLDivElement
+  modalRoot: null | HTMLDivElement,
 };
 
-export class ModalProvider extends React.PureComponent<ModalProviderProps, ModalProviderState> {
+export class ModalProvider extends React.PureComponent<
+  ModalProviderProps,
+  ModalProviderState,
+> {
   state = {
-    modalRoot: null
+    modalRoot: null,
   };
 
   componentDidMount() {
@@ -48,6 +51,10 @@ export class ModalProvider extends React.PureComponent<ModalProviderProps, Modal
   render() {
     const { children } = this.props;
 
-    return <ModalContext.Provider value={this.state}>{children}</ModalContext.Provider>;
+    return (
+      <ModalContext.Provider value={this.state}>
+        {children}
+      </ModalContext.Provider>
+    );
   }
 }

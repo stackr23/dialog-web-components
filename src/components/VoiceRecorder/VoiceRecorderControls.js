@@ -12,7 +12,7 @@ type Props = {
   className?: string,
   startTime: number,
   onStop: () => void,
-  onCancel: () => void
+  onCancel: () => void,
 };
 
 class VoiceRecorderControls extends PureComponent<Props> {

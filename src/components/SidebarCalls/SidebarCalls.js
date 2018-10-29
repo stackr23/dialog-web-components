@@ -24,12 +24,12 @@ export type Props = {
   onNumberChange: (phone: string) => mixed,
   onNumberSubmit: (phone: string) => mixed,
   onNumberFocus: () => mixed,
-  onNumberBlur: () => mixed
+  onNumberBlur: () => mixed,
 };
 
 class SidebarCalls extends Component<Props> {
   static defaultProps = {
-    enableDialpad: false
+    enableDialpad: false,
   };
 
   handleRowsRendered = ({ overscanStopIndex }: Object) => {
@@ -106,7 +106,6 @@ class SidebarCalls extends Component<Props> {
 
   render() {
     const className = classNames(styles.container, this.props.className);
-
 
     return (
       <div className={className}>

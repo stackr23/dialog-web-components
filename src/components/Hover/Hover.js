@@ -11,7 +11,7 @@ export type Props = {
   id?: string,
   children: Node,
   onHover: (hover: boolean) => mixed,
-  onClick?: (event: SyntheticMouseEvent<>) => mixed
+  onClick?: (event: SyntheticMouseEvent<>) => mixed,
 };
 
 class Hover extends Component<Props> {
@@ -27,7 +27,12 @@ class Hover extends Component<Props> {
   }
 
   componentDidMount(): void {
-    this.listener = listen(document, 'selectionchange', this.handleSelectionChange, { passive: true });
+    this.listener = listen(
+      document,
+      'selectionchange',
+      this.handleSelectionChange,
+      { passive: true },
+    );
   }
 
   componentWillUnmount(): void {

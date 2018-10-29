@@ -26,7 +26,7 @@ import HotKeys from '../HotKeys/HotKeys';
 class CreateNewModal extends PureComponent<Props> {
   static defaultProps = {
     id: 'create_new_modal',
-    isPublicGroupsEnabled: true
+    isPublicGroupsEnabled: true,
   };
 
   handlePrevStepClick = (): void => {
@@ -56,21 +56,21 @@ class CreateNewModal extends PureComponent<Props> {
   handleChange = (value: string, { target }: SyntheticInputEvent<>) => {
     this.props.onRequestChange({
       ...this.props.request,
-      [target.name]: value
+      [target.name]: value,
     });
   };
 
   handleMembersChange = (members: SelectorState<PeerInfo>): void => {
     this.props.onRequestChange({
       ...this.props.request,
-      members
+      members,
     });
   };
 
   handleAvatarChange = (avatar: File): void => {
     this.props.onRequestChange({
       ...this.props.request,
-      avatar
+      avatar,
     });
     this.props.onStepChange('info');
   };
@@ -78,14 +78,14 @@ class CreateNewModal extends PureComponent<Props> {
   handleAvatarRemove = (): void => {
     this.props.onRequestChange({
       ...this.props.request,
-      avatar: null
+      avatar: null,
     });
   };
 
   handleAvatarEdit = (avatar: File): void => {
     this.props.onRequestChange({
       ...this.props.request,
-      avatar
+      avatar,
     });
     this.props.onStepChange('avatar');
   };
@@ -133,7 +133,7 @@ class CreateNewModal extends PureComponent<Props> {
     const {
       id,
       request: { type },
-      step
+      step,
     } = this.props;
 
     return (
@@ -176,13 +176,17 @@ class CreateNewModal extends PureComponent<Props> {
       id,
       step,
       request: { type, about, title, shortname, avatar },
-      shortnamePrefix
+      shortnamePrefix,
     } = this.props;
 
     return (
       <div className={styles.wrapper}>
         <ModalHeader className={styles.header} withBorder>
-          <Icon glyph="arrow_back" onClick={this.handlePrevStepClick} className={styles.back} />
+          <Icon
+            glyph="arrow_back"
+            onClick={this.handlePrevStepClick}
+            className={styles.back}
+          />
           <Text id={`CreateNewModal.${type}.title`} />
           <ModalClose
             pending={this.props.pending}
@@ -226,7 +230,7 @@ class CreateNewModal extends PureComponent<Props> {
 
   renderAvatarStep() {
     const {
-      request: { avatar }
+      request: { avatar },
     } = this.props;
 
     if (avatar && typeof avatar !== 'string') {
@@ -266,7 +270,7 @@ class CreateNewModal extends PureComponent<Props> {
   renderMembersStep() {
     const {
       id,
-      request: { type, members }
+      request: { type, members },
     } = this.props;
 
     return (

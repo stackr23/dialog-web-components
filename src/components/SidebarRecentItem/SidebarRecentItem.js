@@ -27,7 +27,7 @@ export type Props = {
   online: ?boolean,
   message: ?Message,
   favourite: ?boolean,
-  onSelect: (peer: Peer) => mixed
+  onSelect: (peer: Peer) => mixed,
 };
 
 class SidebarRecentItem extends PureComponent<Props> {
@@ -55,7 +55,14 @@ class SidebarRecentItem extends PureComponent<Props> {
       );
     }
 
-    return <PeerAvatar className={styles.avatar} size={37} peer={info} online={online} />;
+    return (
+      <PeerAvatar
+        className={styles.avatar}
+        size={37}
+        peer={info}
+        online={online}
+      />
+    );
   }
 
   renderStatus() {
@@ -65,9 +72,7 @@ class SidebarRecentItem extends PureComponent<Props> {
       return (
         <div className={styles.message}>
           <Spinner className={styles.typing} type="dotted" />
-          <span className={styles.highlight}>
-            {typing}
-          </span>
+          <span className={styles.highlight}>{typing}</span>
         </div>
       );
     }
@@ -105,30 +110,47 @@ class SidebarRecentItem extends PureComponent<Props> {
 
     const className = classNames(styles.counter, muted ? styles.muted : null);
 
-    return (
-      <div className={className}>
-        {counter}
-      </div>
-    );
+    return <div className={className}>{counter}</div>;
   }
 
   renderIcons() {
     const icons = [];
     if (this.props.favourite) {
-      icons.push(<Icon key="favourite" glyph="star" className={styles.favIcon} size={16} />);
+      icons.push(
+        <Icon
+          key="favourite"
+          glyph="star"
+          className={styles.favIcon}
+          size={16}
+        />,
+      );
     }
 
     switch (this.props.info.type) {
       case 'group':
-        icons.push(<Icon key="type" glyph="group" className={styles.groupIcon} size={22} />);
+        icons.push(
+          <Icon
+            key="type"
+            glyph="group"
+            className={styles.groupIcon}
+            size={22}
+          />,
+        );
         break;
 
       case 'channel':
-        icons.push(<Icon key="type" glyph="channel" className={styles.channelIcon} size={20} />);
+        icons.push(
+          <Icon
+            key="type"
+            glyph="channel"
+            className={styles.channelIcon}
+            size={20}
+          />,
+        );
         break;
 
       default:
-        // do nothing
+      // do nothing
     }
 
     return icons;
@@ -150,7 +172,7 @@ class SidebarRecentItem extends PureComponent<Props> {
       this.props.className,
       this.props.active ? styles.active : null,
       this.props.counter ? styles.unread : null,
-      this.isDoubleAvatar() ? styles.withDoubleAvatar : null
+      this.isDoubleAvatar() ? styles.withDoubleAvatar : null,
     );
 
     return (
@@ -163,7 +185,11 @@ class SidebarRecentItem extends PureComponent<Props> {
         <div className={styles.text}>
           <div className={styles.header}>
             {this.renderIcons()}
-            <PeerInfoTitle title={this.props.info.title} emojiSize={17} className={styles.title} />
+            <PeerInfoTitle
+              title={this.props.info.title}
+              emojiSize={17}
+              className={styles.title}
+            />
             {this.renderMuteIcon()}
           </div>
           {this.renderStatus()}

@@ -8,7 +8,7 @@ import Timer from './Timer';
 
 type Props = {
   start: number,
-  className?: string
+  className?: string,
 };
 
 function pad(value: number) {
@@ -27,11 +27,7 @@ class TimeTimer extends PureComponent<Props> {
   renderTime = (time: number) => {
     const { className } = this.props;
 
-    return (
-      <span className={className}>
-        {formatTime(time)}
-      </span>
-    );
+    return <span className={className}>{formatTime(time)}</span>;
   };
 
   render() {
