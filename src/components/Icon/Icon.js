@@ -84,7 +84,12 @@ class Icon extends PureComponent<Props> {
     );
 
     return (
-      <div className={className} style={{ width: size, height: size }} onClick={onClick} id={this.props.id}>
+      <div
+        className={className}
+        style={{ width: size, height: size }}
+        onClick={onClick}
+        id={this.props.id}
+      >
         <svg width={size} height={size} className={styles.icon} shapeRendering="auto">
           <use xlinkHref={`#${this.props.glyph}`} />
         </svg>

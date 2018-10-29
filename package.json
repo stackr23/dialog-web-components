@@ -116,7 +116,7 @@
     "raw-loader": "0.5.1",
     "react-styleguidist": "6.0.33",
     "style-loader": "0.23.0",
-    "svg-sprite-loader": "0.3.1",
+    "svg-sprite-loader": "4.1.2",
     "webpack": "3.11.0",
     "yaspeller": "5.0.0",
     "yml-loader": "2.1.0"
