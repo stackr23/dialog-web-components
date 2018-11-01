@@ -15,6 +15,8 @@ Basic Icon:
   <Icon glyph="attach_file" />
   <Icon glyph="call" />
   <Icon glyph="call_end" />
+  <Icon glyph="call_incoming" />
+  <Icon glyph="call_outgoing" />
   <Icon glyph="channel" />
   <Icon glyph="chevron_down" />
   <Icon glyph="chevron_left" />
@@ -164,6 +166,12 @@ Clickable Icon:
   <Icon glyph="done" theme="success" onClick={() => {}} />
   <Icon glyph="notifications" theme="danger" inverted onClick={() => {}} />
   <Icon glyph="phone_outline" theme="info" size="large" onClick={() => {}} />
-  <Icon glyph="person" theme="warning" size="large" inverted onClick={() => {}} />
+  <Icon
+    glyph="person"
+    theme="warning"
+    size="large"
+    inverted
+    onClick={() => {}}
+  />
 </div>
 ```
