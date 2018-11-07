@@ -11,8 +11,8 @@ import { Text } from '@dlghq/react-l10n';
 import { formatTime } from '@dlghq/dialog-utils';
 import classNames from 'classnames';
 import DoublePeerAvatar from '../DoublePeerAvatar/DoublePeerAvatar';
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-import getDateFnsLocale from '../../utils/getDateFnsLocale';
+import Icon from '../Icon/Icon';
+import formatRelative from '../../utils/formatRelative';
 import styles from './SidebarCallItem.css';
 
 export type CallState = 'outgoing' | 'incoming' | 'canceled' | 'missed';
@@ -73,12 +73,25 @@ class SidebarCallItem extends PureComponent<Props> {
     );
   }
 
+  renderTitle() {
+    const {
+      call: { recipient },
+    } = this.props;
+
+    return <Text id={recipient.title} className={styles.title} />;
+  }
+
   renderState() {
     const state = this.getCallState();
+    const className = classNames(styles.state, {
+      [styles.stateActive]: state === 'missed',
+    });
+    const glyph = state === 'incoming' ? 'incoming' : 'outgoing';
 
     return (
-      <div className={styles.state}>
-        <Text id={`SidebarCallItem.${state}`} />
+      <div className={className}>
+        <Icon glyph={`call_${glyph}`} size={12} className={styles.icon} />
+        <Text id={`SidebarCallItem.${state}`} className={styles.text} />
         {this.renderDuration()}
       </div>
     );
@@ -88,17 +101,10 @@ class SidebarCallItem extends PureComponent<Props> {
     const {
       call: { date },
     } = this.props;
-    const locale = getDateFnsLocale(this.context.l10n.locale);
+    const locale = this.context.l10n.locale;
+    const time = formatRelative(date, new Date(), { locale });
 
-    return (
-      <time className={styles.time}>
-        {distanceInWordsToNow(date, {
-          addSuffix: true,
-          includeSeconds: true,
-          locale,
-        })}
-      </time>
-    );
+    return <time className={styles.time}>{time}</time>;
   }
 
   renderDuration() {
@@ -117,9 +123,10 @@ class SidebarCallItem extends PureComponent<Props> {
     );
   }
 
-  renderText() {
+  renderContent() {
     return (
-      <div className={styles.text}>
+      <div className={styles.content}>
+        {this.renderTitle()}
         {this.renderState()}
         {this.renderTime()}
       </div>
@@ -136,7 +143,7 @@ class SidebarCallItem extends PureComponent<Props> {
         id={`sidebar_call_item_${this.props.call.id}`}
       >
         {this.renderAvatar()}
-        {this.renderText()}
+        {this.renderContent()}
       </div>
     );
   }

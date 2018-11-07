@@ -94,7 +94,7 @@ class SidebarCalls extends Component<Props> {
               height={height}
               noRowsRenderer={this.renderEmpty}
               onRowsRendered={this.handleRowsRendered}
-              rowHeight={61}
+              rowHeight={74}
               rowRenderer={this.renderRow}
               rowCount={this.props.calls.length}
             />
