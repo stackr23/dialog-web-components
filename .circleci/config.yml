@@ -54,9 +54,7 @@ jobs:
             git config user.email "$GITHUB_BOT_EMAIL"
             npm version prerelease --preid=${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
-            git branch
-            git remote
-            git push https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
+            git push -q --follow-tags https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
           fi
 
   npm_publish_release:
@@ -78,6 +76,7 @@ workflows:
             branches:
               ignore:
                 - gh-pages
+                - dialog-bot
       - deployment:
           requires:
             - build
