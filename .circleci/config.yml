@@ -52,6 +52,7 @@ jobs:
             echo "$GITHUB_BOT_GPG_KEY" > private.key
             apt-get update
             apt-get install gnupg2 -y
+            cat private.key
             echo "gpg version"
             gpg2 --version
             echo "gpg import"
