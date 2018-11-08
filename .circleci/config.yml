@@ -51,8 +51,9 @@ jobs:
           then
             echo "$GITHUB_BOT_GPG_KEY" > private.key
             cat private.key
-            gpg --version
-            gpg --import private.key
+            gpg2 --version
+            gpg2 --import private.key
+            git config gpg.program gpg2
             git config commit.gpgsign true
             git config user.signingkey "$GITHUB_BOT_GPG_KEY_ID"
             git config credential.helper 'cache --timeout=120'
