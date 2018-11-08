@@ -56,7 +56,7 @@ jobs:
             echo "gpg version"
             gpg2 --version
             echo "gpg import"
-            gpg2 --import private.key
+            gpg2 --allow-secret-key-import --import private.key
             echo "git operations"
             git config gpg.program gpg2
             git config commit.gpgsign true
