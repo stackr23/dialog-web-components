@@ -95,8 +95,6 @@ workflows:
             branches:
               only: master
       - npm_publish_prerelease:
-          requires:
-            - build
           filters:
             branches:
               ignore: master
