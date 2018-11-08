@@ -50,13 +50,13 @@ jobs:
           if [ -z "$CIRCLE_PR_USERNAME" -a "$CIRCLE_USERNAME" != "dialog-bot" -a -n "$CIRCLE_USERNAME" ]
           then
             git config credential.helper 'cache --timeout=120'
-            git config user.name "dialog-bot"
-            git config user.email "dialog.github.bot@dlg.im"
+            git config user.name "$GITHUB_BOT_USERNAME"
+            git config user.email "$GITHUB_BOT_EMAIL"
             npm version prerelease --preid=${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
             git branch
             git pull --rebase
-            git push https://${GITHUB_PERSONAL_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
+            git push https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
           fi
 
   npm_publish_release:
