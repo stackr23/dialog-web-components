@@ -54,8 +54,6 @@ jobs:
             git config user.email "dialog.github.bot@dlg.im"
             npm version prerelease --preid=${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
-            # git add .
-            # git commit -m "Update version number: ${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM}"
             git push -q https://${GITHUB_PERSONAL_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
           fi
 
