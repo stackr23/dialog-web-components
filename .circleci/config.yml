@@ -49,15 +49,11 @@ jobs:
       - run: |
           if [ -z "$CIRCLE_PR_USERNAME" -a "$CIRCLE_USERNAME" != "dialog-bot" -a -n "$CIRCLE_USERNAME" ]
           then
-            echo "$GITHUB_BOT_GPG_KEY" | base64 --decode > private.key
             apt-get update
             apt-get install gnupg2 -y
-            cat private.key
-            echo "gpg version"
+            echo "$GITHUB_BOT_GPG_KEY" | base64 --decode > private.key
             gpg2 --version
-            echo "gpg import"
             gpg2 --allow-secret-key-import --import private.key
-            echo "git operations"
             git config gpg.program gpg2
             git config commit.gpgsign true
             git config user.signingkey "$GITHUB_BOT_GPG_KEY_ID"
@@ -88,7 +84,6 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-                - dialog-bot
       - deployment:
           requires:
             - build
@@ -103,6 +98,8 @@ workflows:
             branches:
               only: master
       - npm_publish_prerelease:
+          requires:
+            - build
           filters:
             branches:
               ignore: master
