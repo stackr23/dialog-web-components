@@ -50,9 +50,12 @@ jobs:
           if [ -z "$CIRCLE_PR_USERNAME" -a "$CIRCLE_USERNAME" != "dialog-bot" -a -n "$CIRCLE_USERNAME" ]
           then
             echo "$GITHUB_BOT_GPG_KEY" > private.key
-            cat private.key
+            apt-get install gnupg2 -y
+            echo "gpg version"
             gpg2 --version
+            echo "gpg import"
             gpg2 --import private.key
+            echo "git operations"
             git config gpg.program gpg2
             git config commit.gpgsign true
             git config user.signingkey "$GITHUB_BOT_GPG_KEY_ID"
