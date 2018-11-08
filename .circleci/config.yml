@@ -49,7 +49,7 @@ jobs:
       - run: |
           if [ -z "$CIRCLE_PR_USERNAME" -a "$CIRCLE_USERNAME" != "dialog-bot" -a -n "$CIRCLE_USERNAME" ]
           then
-            echo "$GITHUB_BOT_GPG_KEY" > base64 --decode > private.key
+            echo "$GITHUB_BOT_GPG_KEY" | base64 --decode > private.key
             apt-get update
             apt-get install gnupg2 -y
             cat private.key
