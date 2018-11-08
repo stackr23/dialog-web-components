@@ -85,7 +85,6 @@ jobs:
           <<: *git_config
       - run: |
           npm version minor
-          npm publish
           git push -q --follow-tags https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
 
 workflows:
