@@ -71,7 +71,6 @@ jobs:
           then
             npm version prerelease --preid=${CIRCLE_BRANCH//[\/_]/-}.${CIRCLE_BUILD_NUM} --ignore-scripts
             npm publish --tag=${CIRCLE_BRANCH}
-            git push -q --follow-tags https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
           fi
 
   npm_publish_release:
