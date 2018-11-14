@@ -8,6 +8,7 @@ defaults_run: &defaults_run
     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
     git config user.name "$GIT_NAME"
     git config user.email "$GIT_EMAIL"
+    git remote add origin https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git
     npm i --no-package-lock
 
 git_config: &git_config
