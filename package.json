@@ -29,7 +29,7 @@
     "prerelease": "npm run build",
     "release": "npm publish",
     "predocs": "styleguidist build",
-    "docs": "buildbranch gh-pages styleguide",
+    "docs": "buildbranch gh-pages styleguide '' no-verify",
     "coverage": "flow-coverage-report -i 'src/**/*.js' -x 'src/styleguide/**/*.js' -x 'src/utils/compileMessages.js'",
     "yaspeller": "yaspeller src/"
   },

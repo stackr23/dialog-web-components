@@ -58,7 +58,6 @@ jobs:
       - run:
           <<: *git_config
       - run: |
-          rm -rf ./node_modules/husky
           npm run docs
 
   npm_publish_prerelease:
