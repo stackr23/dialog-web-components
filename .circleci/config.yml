@@ -86,7 +86,10 @@ jobs:
       - run: |
           if [ "$CIRCLE_USERNAME" != "dialog-bot" -a -n "$CIRCLE_USERNAME" ]
           then
-            npm version minor
+            npm test
+            npm version minor --ignore-scripts
+            npm run build
+            npm publish
             git push -q --follow-tags https://${GITHUB_BOT_TOKEN}@github.com/dialogs/dialog-web-components.git ${CIRCLE_BRANCH}
           fi
 
