@@ -55,6 +55,8 @@ jobs:
             - dialog-components-{{ .Branch }}
       - run:
           <<: *defaults_run
+      - run:
+          <<: *git_config
       - run: |
           npm run docs
 
